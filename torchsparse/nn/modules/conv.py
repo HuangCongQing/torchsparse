@@ -1,3 +1,12 @@
+'''
+Description: Conv3d的稀疏卷积
+Author: HCQ
+Company(School): UCAS
+Email: 1756260160@qq.com
+Date: 2022-10-21 20:53:01
+LastEditTime: 2022-10-21 20:58:53
+FilePath: /torchsparse/torchsparse/nn/modules/conv.py
+'''
 import math
 from typing import Tuple, Union
 
@@ -11,7 +20,7 @@ from torchsparse.utils import make_ntuple
 
 __all__ = ['Conv3d']
 
-
+# Conv3d的稀疏卷积
 class Conv3d(nn.Module):
 
     def __init__(self,
@@ -25,7 +34,7 @@ class Conv3d(nn.Module):
         super().__init__()
         self.in_channels = in_channels
         self.out_channels = out_channels
-        self.kernel_size = make_ntuple(kernel_size, ndim=3)
+        self.kernel_size = make_ntuple(kernel_size, ndim=3) # ?立方
         self.stride = make_ntuple(stride, ndim=3)
         self.dilation = dilation
         self.transposed = transposed
@@ -43,7 +52,7 @@ class Conv3d(nn.Module):
         self.reset_parameters()
 
     def extra_repr(self) -> str:
-        s = '{in_channels}, {out_channels}, kernel_size={kernel_size}'
+        s = '{in_channels}, {out_channels}, kernel_size={kernel_size}' # shape
         if self.stride != (1,) * len(self.stride):
             s += ', stride={stride}'
         if self.dilation != 1:
