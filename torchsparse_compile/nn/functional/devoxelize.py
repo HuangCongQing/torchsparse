@@ -59,7 +59,7 @@ class DevoxelizeFunction(Function):
         weights = weights.contiguous()
 
         if feats.device.type == 'cuda':
-            output = torchsparse.backend.devoxelize_forward_cuda(
+            output = torchsparse.backend.devoxelize_forward_cuda( # 运行 /home/chongqinghuang/source_code/torchsparse/torchsparse/backend/devoxelize/devoxelize_cuda.cu
                 feats, coords, weights)
         elif feats.device.type == 'cpu':
             output = torchsparse.backend.devoxelize_forward_cpu(
