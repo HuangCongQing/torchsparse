@@ -50,6 +50,7 @@ __global__ void scatter_kernel(const int n_in, const int n_out, const int c,
 // neighbor_offset: (k^3) count of active weights based on neighbor_map
 //                      with unused weights having 0 and neighbor_offset[k^3/2]
 //                      holding w[0,0].
+// 稀疏卷积的输入输出特征处理(gather_kernel->matmul->scatterkernel)
 void convolution_forward_cuda(at::Tensor in_feat, at::Tensor out_feat,
                               at::Tensor kernel, at::Tensor neighbor_map,
                               at::Tensor neighbor_offset,
